@@ -1,0 +1,282 @@
+- generic [ref=e3]:
+  - banner:
+    - generic [ref=e4]:
+      - link "T Travelling" [ref=e5] [cursor=pointer]:
+        - /url: "#home"
+        - generic [ref=e6]: T
+        - generic [ref=e7]: Travelling
+      - list [ref=e8]:
+        - listitem [ref=e9]:
+          - link "Honeymoon Packages" [ref=e10] [cursor=pointer]:
+            - /url: /honeymoon
+        - listitem [ref=e11]:
+          - link "Destinations" [ref=e12] [cursor=pointer]:
+            - /url: /destinations
+        - listitem [ref=e13]:
+          - link "Categories" [ref=e14] [cursor=pointer]:
+            - /url: /categories
+        - listitem [ref=e15]:
+          - link "Seasonal Guides" [ref=e16] [cursor=pointer]:
+            - /url: /season
+        - listitem [ref=e17]:
+          - link "Travelogues" [ref=e18] [cursor=pointer]:
+            - /url: /travelogues
+      - generic [ref=e19]:
+        - link "Get in Touch" [ref=e20] [cursor=pointer]:
+          - /url: "#call"
+        - link "Book Now" [ref=e21] [cursor=pointer]:
+          - /url: "#book"
+  - generic [ref=e24]:
+    - generic [ref=e26]:
+      - img "Discover New Destinations" [ref=e27]
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e31]: Explore The World
+          - heading "Discover Amazing Places Around The Globe" [level=1] [ref=e32]
+          - paragraph [ref=e33]: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+          - generic [ref=e34]:
+            - button "Plan Your Trip" [ref=e35] [cursor=pointer]
+            - button "Explore Destinations" [ref=e36] [cursor=pointer]
+        - generic [ref=e37]:
+          - heading "Get Free Consultation" [level=2] [ref=e38]
+          - generic [ref=e39]:
+            - textbox "Full Name" [ref=e40]
+            - textbox "Email Address" [ref=e41]
+            - textbox "Phone Number" [ref=e42]
+            - combobox [ref=e43]:
+              - option "Select Destination" [selected]
+              - option "Dubai"
+              - option "Bali"
+              - option "Thailand"
+              - option "Europe"
+            - button "Request Quote" [ref=e44] [cursor=pointer]
+    - generic [ref=e46]:
+      - img "Adventure Awaits" [ref=e47]
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - generic [ref=e51]: Explore The World
+          - heading "Discover Amazing Places Around The Globe" [level=1] [ref=e52]
+          - paragraph [ref=e53]: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+          - generic [ref=e54]:
+            - button "Plan Your Trip" [ref=e55] [cursor=pointer]
+            - button "Explore Destinations" [ref=e56] [cursor=pointer]
+        - generic [ref=e57]:
+          - heading "Get Free Consultation" [level=2] [ref=e58]
+          - generic [ref=e59]:
+            - textbox "Full Name" [ref=e60]
+            - textbox "Email Address" [ref=e61]
+            - textbox "Phone Number" [ref=e62]
+            - combobox [ref=e63]:
+              - option "Select Destination" [selected]
+              - option "Dubai"
+              - option "Bali"
+              - option "Thailand"
+              - option "Europe"
+            - button "Request Quote" [ref=e64] [cursor=pointer]
+    - generic [ref=e66]:
+      - img "Travel Without Limits" [ref=e67]
+      - generic [ref=e69]:
+        - generic [ref=e70]:
+          - generic [ref=e71]: Explore The World
+          - heading "Discover Amazing Places Around The Globe" [level=1] [ref=e72]
+          - paragraph [ref=e73]: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+          - generic [ref=e74]:
+            - button "Plan Your Trip" [ref=e75] [cursor=pointer]
+            - button "Explore Destinations" [ref=e76] [cursor=pointer]
+        - generic [ref=e77]:
+          - heading "Get Free Consultation" [level=2] [ref=e78]
+          - generic [ref=e79]:
+            - textbox "Full Name" [ref=e80]
+            - textbox "Email Address" [ref=e81]
+            - textbox "Phone Number" [ref=e82]
+            - combobox [ref=e83]:
+              - option "Select Destination" [selected]
+              - option "Dubai"
+              - option "Bali"
+              - option "Thailand"
+              - option "Europe"
+            - button "Request Quote" [ref=e84] [cursor=pointer]
+    - generic [ref=e86]:
+      - img "Explore Nature" [ref=e87]
+      - generic [ref=e89]:
+        - generic [ref=e90]:
+          - generic [ref=e91]: Explore The World
+          - heading "Discover Amazing Places Around The Globe" [level=1] [ref=e92]
+          - paragraph [ref=e93]: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+          - generic [ref=e94]:
+            - button "Plan Your Trip" [ref=e95] [cursor=pointer]
+            - button "Explore Destinations" [ref=e96] [cursor=pointer]
+        - generic [ref=e97]:
+          - heading "Get Free Consultation" [level=2] [ref=e98]
+          - generic [ref=e99]:
+            - textbox "Full Name" [ref=e100]
+            - textbox "Email Address" [ref=e101]
+            - textbox "Phone Number" [ref=e102]
+            - combobox [ref=e103]:
+              - option "Select Destination" [selected]
+              - option "Dubai"
+              - option "Bali"
+              - option "Thailand"
+              - option "Europe"
+            - button "Request Quote" [ref=e104] [cursor=pointer]
+    - generic [ref=e106]:
+      - img "Beautiful Landscapes" [ref=e107]
+      - generic [ref=e109]:
+        - generic [ref=e110]:
+          - generic [ref=e111]: Explore The World
+          - heading "Discover Amazing Places Around The Globe" [level=1] [ref=e112]
+          - paragraph [ref=e113]: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+          - generic [ref=e114]:
+            - button "Plan Your Trip" [ref=e115] [cursor=pointer]
+            - button "Explore Destinations" [ref=e116] [cursor=pointer]
+        - generic [ref=e117]:
+          - heading "Get Free Consultation" [level=2] [ref=e118]
+          - generic [ref=e119]:
+            - textbox "Full Name" [ref=e120]
+            - textbox "Email Address" [ref=e121]
+            - textbox "Phone Number" [ref=e122]
+            - combobox [ref=e123]:
+              - option "Select Destination" [selected]
+              - option "Dubai"
+              - option "Bali"
+              - option "Thailand"
+              - option "Europe"
+            - button "Request Quote" [ref=e124] [cursor=pointer]
+    - generic [ref=e126]:
+      - img "Mountain Adventures" [ref=e127]
+      - generic [ref=e129]:
+        - generic [ref=e130]:
+          - generic [ref=e131]: Explore The World
+          - heading "Discover Amazing Places Around The Globe" [level=1] [ref=e132]
+          - paragraph [ref=e133]: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+          - generic [ref=e134]:
+            - button "Plan Your Trip" [ref=e135] [cursor=pointer]
+            - button "Explore Destinations" [ref=e136] [cursor=pointer]
+        - generic [ref=e137]:
+          - heading "Get Free Consultation" [level=2] [ref=e138]
+          - generic [ref=e139]:
+            - textbox "Full Name" [ref=e140]
+            - textbox "Email Address" [ref=e141]
+            - textbox "Phone Number" [ref=e142]
+            - combobox [ref=e143]:
+              - option "Select Destination" [selected]
+              - option "Dubai"
+              - option "Bali"
+              - option "Thailand"
+              - option "Europe"
+            - button "Request Quote" [ref=e144] [cursor=pointer]
+    - generic [ref=e146]:
+      - img "Ocean Escapes" [ref=e147]
+      - generic [ref=e149]:
+        - generic [ref=e150]:
+          - generic [ref=e151]: Explore The World
+          - heading "Discover Amazing Places Around The Globe" [level=1] [ref=e152]
+          - paragraph [ref=e153]: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+          - generic [ref=e154]:
+            - button "Plan Your Trip" [ref=e155] [cursor=pointer]
+            - button "Explore Destinations" [ref=e156] [cursor=pointer]
+        - generic [ref=e157]:
+          - heading "Get Free Consultation" [level=2] [ref=e158]
+          - generic [ref=e159]:
+            - textbox "Full Name" [ref=e160]
+            - textbox "Email Address" [ref=e161]
+            - textbox "Phone Number" [ref=e162]
+            - combobox [ref=e163]:
+              - option "Select Destination" [selected]
+              - option "Dubai"
+              - option "Bali"
+              - option "Thailand"
+              - option "Europe"
+            - button "Request Quote" [ref=e164] [cursor=pointer]
+    - generic [ref=e166]:
+      - img "Journey Beyond" [ref=e167]
+      - generic [ref=e169]:
+        - generic [ref=e170]:
+          - generic [ref=e171]: Explore The World
+          - heading "Discover Amazing Places Around The Globe" [level=1] [ref=e172]
+          - paragraph [ref=e173]: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+          - generic [ref=e174]:
+            - button "Plan Your Trip" [ref=e175] [cursor=pointer]
+            - button "Explore Destinations" [ref=e176] [cursor=pointer]
+        - generic [ref=e177]:
+          - heading "Get Free Consultation" [level=2] [ref=e178]
+          - generic [ref=e179]:
+            - textbox "Full Name" [ref=e180]
+            - textbox "Email Address" [ref=e181]
+            - textbox "Phone Number" [ref=e182]
+            - combobox [ref=e183]:
+              - option "Select Destination" [selected]
+              - option "Dubai"
+              - option "Bali"
+              - option "Thailand"
+              - option "Europe"
+            - button "Request Quote" [ref=e184] [cursor=pointer]
+    - generic [ref=e186]:
+      - img "Wilderness Awaits" [ref=e187]
+      - generic [ref=e189]:
+        - generic [ref=e190]:
+          - generic [ref=e191]: Explore The World
+          - heading "Discover Amazing Places Around The Globe" [level=1] [ref=e192]
+          - paragraph [ref=e193]: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+          - generic [ref=e194]:
+            - button "Plan Your Trip" [ref=e195] [cursor=pointer]
+            - button "Explore Destinations" [ref=e196] [cursor=pointer]
+        - generic [ref=e197]:
+          - heading "Get Free Consultation" [level=2] [ref=e198]
+          - generic [ref=e199]:
+            - textbox "Full Name" [ref=e200]
+            - textbox "Email Address" [ref=e201]
+            - textbox "Phone Number" [ref=e202]
+            - combobox [ref=e203]:
+              - option "Select Destination" [selected]
+              - option "Dubai"
+              - option "Bali"
+              - option "Thailand"
+              - option "Europe"
+            - button "Request Quote" [ref=e204] [cursor=pointer]
+  - generic [ref=e216]:
+    - generic [ref=e217]: Why Choose Us
+    - heading "Built for the Modern Traveller" [level=2] [ref=e218]
+    - paragraph [ref=e219]: We go beyond the ordinary to create journeys you’ll remember forever.
+    - generic [ref=e220]:
+      - article [ref=e221]:
+        - generic [ref=e222]: ✈️
+        - heading "Curated Experiences" [level=3] [ref=e223]
+        - paragraph [ref=e224]: Hand-picked destinations with local experts who know every hidden gem and cultural treasure.
+      - article [ref=e225]:
+        - generic [ref=e226]: 🏨
+        - heading "Premium Stays" [level=3] [ref=e227]
+        - paragraph [ref=e228]: Luxurious accommodations at unbeatable prices — from boutique hotels to private villas.
+      - article [ref=e229]:
+        - generic [ref=e230]: 🌍
+        - heading "24/7 Support" [level=3] [ref=e231]
+        - paragraph [ref=e232]: Dedicated travel assistance round the clock, so you travel with confidence and peace of mind.
+  - generic [ref=e234]:
+    - generic [ref=e235]: Explore the World
+    - heading "Popular Destinations" [level=2] [ref=e236]
+    - paragraph [ref=e237]: Hand-picked locations that promise unforgettable experiences.
+    - generic [ref=e238]:
+      - article [ref=e239]:
+        - generic [ref=e241]: 🏔️
+        - generic [ref=e242]:
+          - heading "Swiss Alps" [level=3] [ref=e243]
+          - paragraph [ref=e244]: Zurich, Switzerland
+          - paragraph [ref=e245]: Breathtaking mountain views, serene landscapes, and world-class ski resorts await.
+          - link "Learn More →" [ref=e246] [cursor=pointer]:
+            - /url: "#book"
+      - article [ref=e247]:
+        - generic [ref=e249]: 🏝️
+        - generic [ref=e250]:
+          - heading "Bali Beaches" [level=3] [ref=e251]
+          - paragraph [ref=e252]: Indonesia
+          - paragraph [ref=e253]: Tropical paradise with crystal clear waters, ancient temples, and vibrant culture.
+          - link "Learn More →" [ref=e254] [cursor=pointer]:
+            - /url: "#book"
+      - article [ref=e255]:
+        - generic [ref=e257]: 🗽
+        - generic [ref=e258]:
+          - heading "New York City" [level=3] [ref=e259]
+          - paragraph [ref=e260]: USA
+          - paragraph [ref=e261]: The city that never sleeps — iconic landmarks, Broadway shows, and world-class dining.
+          - link "Learn More →" [ref=e262] [cursor=pointer]:
+            - /url: "#book"
