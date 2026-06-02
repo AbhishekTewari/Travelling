@@ -112,7 +112,7 @@
   color: var(--mf-orange-400);
 }
 
-/* Dropdown panel — fixed positioning via inline styles, z-index set inline */
+/* Dropdown panel — fixed positioning via inline styles */
 .custom-select-dropdown {
   background: rgba(10, 6, 29, 0.97);
   backdrop-filter: blur(16px);
@@ -305,7 +305,7 @@
   max-width: 450px;
   max-height: 90vh;
   overflow-y: auto;
-  background: var(--mf-bg-card);
+  background: rgb(19 28 52 / 96%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--mf-white-08);
