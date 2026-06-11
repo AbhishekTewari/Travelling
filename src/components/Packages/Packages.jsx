@@ -1,6 +1,6 @@
 import './Packages.css'
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -100,23 +100,21 @@ export default function Packages() {
 
         <div className="packages__grid">
           <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            slidesPerView={1}
-            spaceBetween={20}
+            modules={[Navigation, Pagination]}
+            slidesPerView={1.18}        // fractional = neighbors peek in
+            centeredSlides={true}        // active card sits in the middle
+            spaceBetween={14}
             loop={true}
             navigation
             grabCursor={true}
             allowTouchMove={true}
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: false,
-            }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
             pagination={{ clickable: true }}
             className="packages-swiper"
             breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
+              640:  { slidesPerView: 1.4, centeredSlides: true,  spaceBetween: 16 },
+              768:  { slidesPerView: 2,   centeredSlides: false, spaceBetween: 20 },
+              1024: { slidesPerView: 3,   centeredSlides: false, spaceBetween: 20 },
             }}
           >
           {packages.map((pkg, i) => (

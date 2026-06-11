@@ -8,6 +8,7 @@ import MultistepForm from './components/Forms/MultistepForm/MultistepForm'
 import Hotels from './components/Hotels/Hotels'
 import Testimonials from './components/Testimonials/Testimonials'
 import Spiritual from './components/Spiritual/Spiritual'
+import Blog from './components/Blog/Blog'
 import Footer from './components/Footer/Footer'
 
 // import Faq from './components/Faq/Faq'
@@ -22,6 +23,7 @@ function App() {
       <Category />
       <Packages />
       <Spiritual />
+      <Blog />
       {/* <Faq /> */}
       <Hotels />
       <Testimonials />

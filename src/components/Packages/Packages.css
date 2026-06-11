@@ -386,9 +386,9 @@
    ═══════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
-  .packages-swiper .packages__card {
+  /* .packages-swiper .packages__card {
     max-width: 340px;
-  }
+  } */
 
   .packages__card-image {
     height: 160px;
@@ -408,6 +408,13 @@
 
   .packages__card-price-value {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .packages-swiper .packages__card {
+    max-width: none;
+    width: 100%;
   }
 }
 
