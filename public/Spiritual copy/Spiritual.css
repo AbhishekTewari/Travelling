@@ -179,25 +179,25 @@
 .st-tab.is-active { color: #4A1E12; font-weight: 600; background: linear-gradient(135deg, var(--marigold), var(--saffron)); border-color: transparent; box-shadow: 0 8px 22px -8px rgba(242,145,47,.6); }
 .st-tab.is-active .st-tab-dot { background: #4A1E12; }
 
-/* ── carousel (Swiper) ─────────────────────── */
+/* carousel */
 .st-carousel { position: relative; }
-
 .st-track {
-  width: 100%;
-  margin: 0;
-  padding: 8px 4px 46px;   /* bottom space for pagination dots */
-}
-
-.st-track .swiper-slide {
-  height: auto;
   display: flex;
+  gap: 22px;
+  list-style: none;
+  margin: 0;
+  padding: 8px 4px 26px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
+.st-track::-webkit-scrollbar { display: none; }
 
 .st-card {
   position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  flex: 0 0 300px;
+  scroll-snap-align: start;
   border-radius: 20px;
   overflow: hidden;
   background: linear-gradient(180deg, var(--ivory), #FBF1E0);
@@ -222,7 +222,7 @@
 
 @keyframes st-cardin { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
 
-.st-card-media { position: relative; height: 190px; overflow: hidden; flex-shrink: 0; }
+.st-card-media { position: relative; height: 190px; overflow: hidden; }
 .st-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
 .st-card:hover .st-card-media img { transform: scale(1.07); }
 .st-card-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,253,248,0) 42%, rgba(255,253,248,.97)); }
@@ -258,15 +258,14 @@
 .st-scene-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .st-scene::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 48%, rgba(255,253,248,.95)); }
 
-.st-card-body { position: relative; z-index: 2; padding: 18px 20px 22px; text-align: center; flex: 1; display: flex; flex-direction: column; }
+.st-card-body { position: relative; z-index: 2; padding: 18px 20px 22px; text-align: center; }
 .st-torana { width: 120px; height: 16px; color: var(--gold); opacity: .8; margin: -30px auto 8px; display: block; position: relative; }
 .st-card-name { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 25px; line-height: 1.1; margin: 0; color: var(--maroon); }
-.st-card-loc { display: inline-flex; align-items: center; justify-content: center; gap: 5px; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--vermilion); margin-top: 7px; font-weight: 600; }
-.st-card-blurb { font-size: 13.5px; line-height: 1.65; color: var(--ink-dim); margin: 12px 0 18px; flex: 1; }
+.st-card-loc { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--vermilion); margin-top: 7px; font-weight: 600; }
+.st-card-blurb { font-size: 13.5px; line-height: 1.65; color: var(--ink-dim); margin: 12px 0 18px; }
 .st-cta {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
@@ -276,7 +275,6 @@
   padding: 11px 22px;
   border-radius: 999px;
   border: none;
-  margin: 0 auto;
   background: linear-gradient(135deg, var(--gold-soft) 0%, var(--saffron) 55%, var(--vermilion) 120%);
   box-shadow: 0 8px 20px -8px var(--accent);
   transition: transform .3s, box-shadow .3s;
@@ -285,24 +283,7 @@
 .st-cta-arrow { transition: transform .3s; }
 .st-cta:hover .st-cta-arrow { transform: translateX(4px); }
 
-/* pagination dots */
-.st-track .swiper-pagination {
-  bottom: 8px !important;
-}
-.st-track .swiper-pagination-bullet {
-  width: 7px;
-  height: 7px;
-  background: rgba(201, 150, 46, 0.45);
-  opacity: 1;
-  transition: all .3s ease;
-}
-.st-track .swiper-pagination-bullet-active {
-  width: 26px;
-  border-radius: 99px;
-  background: linear-gradient(135deg, var(--marigold), var(--saffron));
-}
-
-/* arrows (custom — desktop only) */
+/* arrows */
 .st-arrow {
   position: absolute;
   top: 42%;
@@ -325,24 +306,10 @@
 .st-arrow-l { left: -8px; }
 .st-arrow-r { right: -8px; }
 
-/* ── mobile: centered card in front, neighbors tucked behind ── */
-@media (max-width: 767px) {
-  .st-track .swiper-slide {
-    transform: scale(0.86);
-    opacity: 0.7;
-    transition: transform .4s ease, opacity .4s ease;
-    z-index: 1;
-  }
-  .st-track .swiper-slide-active {
-    transform: scale(1);
-    opacity: 1;
-    z-index: 2;
-  }
-}
-
 @media (max-width: 760px) {
-  .st-root { padding: 72px 14px 24px; }
+  .st-root { padding: 72px 14px 84px; }
   .st-title { font-size: 36px; }
+  .st-card { flex-basis: 84vw; }
   .st-arrow { display: none; }
 }
 
@@ -351,7 +318,6 @@
   .st-petal { display: none; }
   .st-card { animation: none; }
   .st-card-media img, .st-cta, .st-card { transition: none; }
-  .st-track .swiper-slide { transition: none; }
 }
 
 /* hanging temple bells (ghanti) — two per side, varied rope heights */

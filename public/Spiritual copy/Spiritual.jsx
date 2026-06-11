@@ -1,8 +1,4 @@
 import { useState, useRef, useCallback } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
 import "./Spiritual.css";
 
 /**
@@ -242,14 +238,16 @@ const PETALS = Array.from({ length: 15 }).map((_, i) => ({
 
 export default function SpiritualTemples() {
   const [active, setActive] = useState(0);
-  const swiperRef = useRef(null);
+  const trackRef = useRef(null);
 
   const region = REGIONS[active];
 
   const scroll = useCallback((dir) => {
-    const s = swiperRef.current;
-    if (!s) return;
-    if (dir > 0) s.slideNext(); else s.slidePrev();
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector(".st-card");
+    const step = card ? card.offsetWidth + 22 : 320;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
   }, []);
 
   return (
@@ -311,7 +309,7 @@ export default function SpiritualTemples() {
               className={`st-tab ${i === active ? "is-active" : ""}`}
               onClick={() => {
                 setActive(i);
-                if (swiperRef.current) swiperRef.current.slideToLoop(0, 400);
+                if (trackRef.current) trackRef.current.scrollTo({ left: 0, behavior: "smooth" });
               }}
             >
               <span className="st-tab-dot" />
@@ -325,57 +323,38 @@ export default function SpiritualTemples() {
             <ChevronLeft size={22} />
           </button>
 
-          <Swiper
-            key={region.id}
-            modules={[Pagination, Autoplay]}
-            onSwiper={(s) => { swiperRef.current = s; }}
-            slidesPerView={1.25}
-            centeredSlides={true}
-            spaceBetween={-20}
-            loop={true}
-            grabCursor={true}
-            allowTouchMove={true}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
-            pagination={{ clickable: true }}
-            breakpoints={{
-              768:  { slidesPerView: 2, centeredSlides: false, spaceBetween: 22 },
-              1024: { slidesPerView: 3, centeredSlides: false, spaceBetween: 22 },
-            }}
-            className="st-track"
-          >
+          <ul className="st-track" ref={trackRef} key={region.id}>
             {region.temples.map((t, i) => (
-              <SwiperSlide key={t.name}>
-                <div className="st-card" style={{ animationDelay: `${i * 80}ms`, "--accent": t.accent }}>
-                  <div className="st-card-media">
-                    {t.image ? (
-                      <>
-                        <img src={t.image} alt={t.name} loading="lazy" />
-                        <div className="st-card-scrim" />
-                      </>
-                    ) : (
-                      <ShikharaScene sky={region.sky} accent={t.accent} />
-                    )}
-                    <span className="st-deity">{t.deity}</span>
-                  </div>
-
-                  <div className="st-card-body">
-                    <Torana className="st-torana" />
-                    <h3 className="st-card-name">{t.name}</h3>
-                    <span className="st-card-loc">
-                      <MapPin size={13} strokeWidth={2.2} />
-                      {t.location}
-                    </span>
-                    <p className="st-card-blurb">{t.blurb}</p>
-                    <button className="st-cta">
-                      Book Experience
-                      <span className="st-cta-arrow">→</span>
-                    </button>
-                  </div>
-                  <span className="st-card-glow" />
+              <li className="st-card" key={t.name} style={{ animationDelay: `${i * 80}ms`, "--accent": t.accent }}>
+                <div className="st-card-media">
+                  {t.image ? (
+                    <>
+                      <img src={t.image} alt={t.name} loading="lazy" />
+                      <div className="st-card-scrim" />
+                    </>
+                  ) : (
+                    <ShikharaScene sky={region.sky} accent={t.accent} />
+                  )}
+                  <span className="st-deity">{t.deity}</span>
                 </div>
-              </SwiperSlide>
+
+                <div className="st-card-body">
+                  <Torana className="st-torana" />
+                  <h3 className="st-card-name">{t.name}</h3>
+                  <span className="st-card-loc">
+                    <MapPin size={13} strokeWidth={2.2} />
+                    {t.location}
+                  </span>
+                  <p className="st-card-blurb">{t.blurb}</p>
+                  <button className="st-cta">
+                    Book Experience
+                    <span className="st-cta-arrow">→</span>
+                  </button>
+                </div>
+                <span className="st-card-glow" />
+              </li>
             ))}
-          </Swiper>
+          </ul>
 
           <button className="st-arrow st-arrow-r" aria-label="More temples" onClick={() => scroll(1)}>
             <ChevronRight size={22} />
