@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════
-   Blog — Latest Travel Guides & Articles
+   Blog — Swiper Slider · Travel Guides
    ═══════════════════════════════════════════════════ */
 
 .blog {
@@ -53,11 +53,17 @@
   line-height: 1.6;
 }
 
-/* ── Grid — 5 cols ──────────────────────────── */
-.blog__grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.25rem;
+/* ── Swiper Container ───────────────────────── */
+.blog__swiper {
+  width: 100%;
+  padding: 0.5rem 0 0.5rem;
+}
+
+.blog__swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  height: auto;
 }
 
 /* ── Card ───────────────────────────────────── */
@@ -70,6 +76,7 @@
   border: 1px solid #e2e8f0;
   text-align: left;
   box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  height: 100%;
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
               border-color 0.3s ease,
               box-shadow 0.3s ease;
@@ -156,39 +163,36 @@
   transform: translateX(3px);
 }
 
+/* ── Pagination Dots ────────────────────────── */
+.blog__swiper .swiper-pagination {
+  position: relative;
+  bottom: 0 !important;
+  margin-top: 2rem;
+}
+
+.blog__swiper .swiper-pagination-bullet {
+  background: #cbd5e1;
+  opacity: 0.9;
+}
+
+.blog__swiper .swiper-pagination-bullet-active {
+  background: #f97316;
+}
+
 /* ═══════════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════════ */
-
-@media (max-width: 1100px) {
-  .blog__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
 
 @media (max-width: 768px) {
   .blog {
     padding: 3.5rem 1.25rem;
   }
 
-  .blog__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+  .blog__header {
+    margin-bottom: 2rem;
   }
 
   .blog__card-image {
     height: 120px;
-  }
-}
-
-@media (max-width: 480px) {
-  .blog__grid {
-    grid-template-columns: 1fr;
-    max-width: 380px;
-    margin: 0 auto;
-  }
-
-  .blog__header {
-    margin-bottom: 2rem;
   }
 }
