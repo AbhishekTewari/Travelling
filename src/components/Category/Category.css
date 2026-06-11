@@ -1,0 +1,202 @@
+/* ═══════════════════════════════════════════════════
+   Category — Glass Cards + Gradient Orbs
+   ═══════════════════════════════════════════════════ */
+
+.category {
+  position: relative;
+  padding: 2rem 2rem 2rem;
+  background: #f9f9f9;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.category__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ── Header ─────────────────────────────────── */
+.category__header {
+  margin-bottom: 3rem;
+}
+
+
+.category__heading {
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.5rem;
+}
+.category__heading-accent {
+  color: #f97316;
+}
+
+.category__subtitle {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Grid — 6 cols ──────────────────────────── */
+.category__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+}
+
+/* ── Glass Card ────────────────────────────── */
+.category__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.4rem;
+  padding: 1.5rem 1rem 1.25rem;
+  border-radius: 16px;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.04),
+    0 0 40px color-mix(in srgb, var(--card-color) 6%, transparent);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease,
+              background 0.3s ease;
+
+  /* Entrance */
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.category__card--visible {
+  animation: cardIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--card-delay, 0s);
+}
+
+@keyframes cardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Hover ──────────────────────────────────── */
+.category__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--card-color, #f97316);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 12px 40px color-mix(in srgb, var(--card-color) 20%, transparent),
+    0 0 60px color-mix(in srgb, var(--card-color) 10%, transparent);
+}
+
+/* ── Icon ───────────────────────────────────── */
+.category__card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  font-size: 1.4rem;
+  margin-bottom: 0.2rem;
+  background: color-mix(in srgb, var(--card-color) 12%, #f1f5f9);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category__card:hover .category__card-icon {
+  transform: scale(1.12);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--card-color) 20%, transparent);
+}
+
+/* ── Name ───────────────────────────────────── */
+.category__card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  transition: color 0.3s ease;
+}
+
+.category__card:hover .category__card-name {
+  color: var(--card-color, #f97316);
+}
+
+/* ── Description ────────────────────────────── */
+.category__card-desc {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #94a3b8;
+  max-width: 140px;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .category__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+@media (max-width: 640px) {
+  .category {
+    padding: 3rem 1.25rem 1.5rem;
+  }
+
+  .category__header {
+    margin-bottom: 1.5rem;
+  }
+
+  .category__heading {
+    font-size: 1.4rem;
+  }
+
+  .category__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.7rem;
+  }
+
+  .category__card {
+    padding: 1rem 0.65rem 0.85rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  .category__card-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+
+  .category__card-name {
+    font-size: 0.82rem;
+  }
+
+  .category__card-desc {
+    font-size: 0.68rem;
+    max-width: 110px;
+  }
+
+}
+
+@media (max-width: 400px) {
+  .category__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+

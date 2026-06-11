@@ -1,0 +1,166 @@
+/* Script fonts for the title (swap or self-host if you prefer) */
+@import url("https://fonts.googleapis.com/css2?family=Sacramento&family=Kaushan+Script&display=swap");
+
+.hotels {
+  /* tweak these to re-theme the whole band */
+  --gold: #f6a821;
+  --gold-deep: #ef9e16;
+  --ink: #15365c;
+  --card-border: #ffffff;
+  --feature-text: #5a4413;
+
+  position: relative;
+  background: var(--gold);
+  padding: 84px clamp(16px, 6vw, 96px) 96px;
+  overflow: hidden;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* ----- wave dividers ----- */
+.hotels__wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: block;
+}
+/* .hotels__wave path { fill: #f9f9f9; } */
+.hotels__wave--top    { top: 0; fill:#f9e0c2;}
+.hotels__wave--bottom { bottom: 0;  fill:#f9f9f9; }
+
+/* ----- tilted photo collage ----- */
+.hotels__gallery {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(-20px, -1.5vw, 0px);
+  margin: 0 auto 56px;
+  max-width: 880px;
+}
+
+.hotels__card {
+  margin: 0;
+  flex: 0 0 auto;
+  width: clamp(150px, 20vw, 210px);
+  aspect-ratio: 4 / 3;
+  background: var(--card-border);
+  padding: 7px;
+  border-radius: 4px;
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.22);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hotels__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}
+
+/* staggered overlap + rotation, like the flyer */
+.hotels__card--1 { transform: rotate(-7deg); z-index: 1; }
+.hotels__card--2 { transform: rotate(4deg);  margin-left: -26px; z-index: 2; }
+.hotels__card--3 { transform: rotate(-3deg); margin-left: -26px; z-index: 3; }
+.hotels__card--4 { transform: rotate(6deg);  margin-left: -26px; z-index: 4; }
+
+.hotels__card:hover {
+  transform: rotate(0deg) scale(1.06);
+  box-shadow: 0 20px 34px rgba(0, 0, 0, 0.3);
+  z-index: 5;
+}
+
+/* ----- content row ----- */
+.hotels__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hotels__title {
+  margin: 0 0 18px;
+  line-height: 0.95;
+  display: flex;
+  flex-direction: column;
+}
+.hotels__title-script {
+  font-family: "Sacramento", cursive;
+  font-size: clamp(34px, 5vw, 52px);
+  color: #ffffff;
+}
+.hotels__title-main {
+  font-family: "Kaushan Script", cursive;
+  font-size: clamp(40px, 6.5vw, 70px);
+  color: var(--ink);
+  margin-top: -6px;
+}
+
+.hotels__lead {
+  margin: 0;
+  color: var(--feature-text);
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 420px;
+}
+
+/* ----- feature list ----- */
+.hotels__features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.hotels__feature {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.hotels__feature-icon {
+  flex: 0 0 auto;
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  color: var(--gold-deep);
+  border-radius: 50%;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+.hotels__feature-title {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.hotels__feature-text {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--feature-text);
+}
+
+/* ----- responsive ----- */
+@media (max-width: 760px) {
+  .hotels__content { grid-template-columns: 1fr; }
+  .hotels__gallery { flex-wrap: wrap; gap: 10px; }
+  .hotels__card,
+  .hotels__card--2,
+  .hotels__card--3,
+  .hotels__card--4 {
+    margin-left: 0;
+    width: clamp(130px, 40vw, 180px);
+  }
+  .hotels__wave--top    { top: -3px; z-index: 999; }
+  .hotels__wave--bottom { bottom: -3px; z-index: 999; }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hotels__card { transition: none; }
+  .hotels__card:hover { transform: none; }
+}

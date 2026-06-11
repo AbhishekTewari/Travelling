@@ -26,6 +26,10 @@ export default function Header({ onBookNow }) {
   }, [menuOpen])
 
   const closeMenu = () => setMenuOpen(false)
+  const handleMobileBookNow = () => {
+    closeMenu()
+    onBookNow()
+  }
 
   const navClasses = [
     'header__nav',
@@ -39,28 +43,35 @@ export default function Header({ onBookNow }) {
       <div className={navClasses}>
       
         {/* ── Brand ── */}
-        <a href="#home" className="header__brand">
-          <span className="header__avatar">T</span>
-          <span className="header__name">Travelling</span>
+        <a href="/" className="header__brand" aria-label="Travel Log Book — Home">
+          <img
+            src="/logo.svg"
+            alt="Travel Log Book logo"
+            width="32"
+            height="32"
+            className="header__logo-img"
+          />
+          <span className="header__name">Travel Log Book</span>
         </a>
 
         {/* ── Desktop Nav Links ── */}
-        <ul className={`header__links${menuOpen ? ' header__links--open' : ''}`}>
-          <li><a href="/honeymoon" className="header__link" onClick={closeMenu}>Honeymoon</a></li>
-          <li><a href="/destinations" className="header__link" onClick={closeMenu}>Destinations</a></li>
-          <li><a href="/categories" className="header__link" onClick={closeMenu}>Categories</a></li>
-
-          <li><a href="/season" className="header__link" onClick={closeMenu}>Seasonal Guides</a></li>
-          <li><a href="/travelogues" className="header__link" onClick={closeMenu}>Travelogues</a></li>
-          <li className="header__link-mobile-only">
-            <a href="tel:+911234567890" className="header__icon-btn header__cta-mobile" onClick={closeMenu}>
-             <FiPhone /> Call Us
-            </a>
-            <button className="header__cta-mobile" onClick={closeMenu} onClick={onBookNow}>
-              Book Now
-            </button>
-          </li>
-        </ul>
+        <nav aria-label="Main navigation">
+          <ul className={`header__links${menuOpen ? ' header__links--open' : ''}`}>
+            <li><a href="/honeymoon" className="header__link" onClick={closeMenu}>Honeymoon</a></li>
+            <li><a href="/destinations" className="header__link" onClick={closeMenu}>Destinations</a></li>
+            <li><a href="/categories" className="header__link" onClick={closeMenu}>Categories</a></li>
+            <li><a href="/season" className="header__link" onClick={closeMenu}>Seasonal Guides</a></li>
+            <li><a href="/travelogues" className="header__link" onClick={closeMenu}>Travelogues</a></li>
+            <li className="header__link-mobile-only">
+              <a href="tel:+911234567890" className="header__icon-btn header__cta-mobile" onClick={closeMenu}>
+               <FiPhone /> Call Us
+              </a>
+              <button className="header__cta-mobile" onClick={handleMobileBookNow}>
+                Book Now
+              </button>
+            </li>
+          </ul>
+        </nav>
 
         {/* ── Actions ── */}
         <div className="header__actions">

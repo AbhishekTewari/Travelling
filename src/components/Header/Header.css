@@ -4,7 +4,7 @@
 /* ── Wrapper (spacer so content doesn't hide under fixed nav) ── */
 .header {
   position: relative;
-  z-index: 100;
+  z-index: 99999;
   height: 0; /* no extra space, pill is absolutely positioned */
 }
 
@@ -58,20 +58,12 @@
   flex-shrink: 0;
 }
 
-.header__avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+.header__logo-img {
+  display: block;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
-
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
+  border-radius: 50%;
 }
 
 .header__name {
@@ -94,10 +86,10 @@
 .header__link {
   display: block;
   color: rgb(255 255 255 / 80%);
-  font-size: 13.5px;
+  font-size: 12.5px;
   font-weight: 500;
   text-decoration: none;
-  padding: 6px 14px;
+  padding: 6px 12px;
   border-radius: 100px;
   transition: color 0.2s ease, background 0.2s ease;
   white-space: nowrap;
@@ -181,7 +173,8 @@
 @media (max-width: 768px) {
   .header__nav {
     padding: 10px 16px;
-    width: 95%;
+    width: calc(100% - 24px);
+    max-width: 100%;
   }
 
   .header__name {
@@ -190,10 +183,10 @@
 
   /* Nav links become a dropdown below the pill */
   .header__links {
-    position: fixed;
-    top: 82px; /* sits just below the pill (16px top + ~56px nav height + gap) */
-    left: 20px;
-    right: 20px;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
     width: auto;
     flex-direction: column;
     gap: 10px;
@@ -204,6 +197,9 @@
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
+    box-sizing: border-box;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
 
     opacity: 0;
     pointer-events: none;

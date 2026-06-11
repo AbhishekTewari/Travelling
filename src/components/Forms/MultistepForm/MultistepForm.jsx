@@ -34,7 +34,7 @@ const months = [
   { name: 'December', emoji: '❄️' },
 ];
 
-const stepTitles = ['Plan your trip', 'What kind of trip?'];
+const stepTitles = ['Plan your trip', 'What kind of trip?', "Who's traveling?", 'Contact details', 'Travel details', 'Origin'];
 
 const tripTypes = [
   { name: 'Romantic Getaway', emoji: '💕', desc: 'For couples & honeymoons' },
@@ -52,16 +52,27 @@ export default function MultistepForm({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
     destination: '',
     hotelCategory: '',
-    days: 7,
+    days: 4,
     month: '',
     needFlight: false,
     tripType: '',
+    adults: 2,
+    children: 0,
+    email: '',
+    phone: '',
+    dateStatus: 'not decided',
+    travelDate: '',
+    bookedTickets: false,
+    fromLocation: '',
   });
   const [direction, setDirection] = useState('next');
   const [error, setError] = useState('');
   const [monthOpen, setMonthOpen] = useState(false);
   const [dropdownCoords, setDropdownCoords] = useState(null);
+  const [googleReady, setGoogleReady] = useState(false);
+  const destinationRef = useRef(null);
   const monthRef = useRef(null);
+  const today = new Date().toISOString().split('T')[0];
 
   // ---- Escape key handler ----
   const handleKeyDown = useCallback(
@@ -95,6 +106,61 @@ export default function MultistepForm({ isOpen, onClose }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+    if (!apiKey) {
+      console.warn('Set VITE_GOOGLE_MAPS_API_KEY in .env for Google Places autocomplete');
+      return;
+    }
+
+    if (window.google?.maps?.places) {
+      if (!googleReady) {
+        queueMicrotask(() => setGoogleReady(true));
+      }
+      return;
+    }
+
+    const existingScript = document.querySelector('script[data-google-maps="places-autocomplete"]');
+    if (existingScript) {
+      const handleLoad = () => setGoogleReady(true);
+      existingScript.addEventListener('load', handleLoad);
+      return () => existingScript.removeEventListener('load', handleLoad);
+    }
+
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+    script.async = true;
+    script.defer = true;
+    script.dataset.googleMaps = 'places-autocomplete';
+    script.onload = () => setGoogleReady(true);
+    script.onerror = () => console.warn('Google Maps script failed to load');
+    document.body.appendChild(script);
+  }, [isOpen, googleReady]);
+
+  useEffect(() => {
+    if (!googleReady || !destinationRef.current) return;
+
+    const autocomplete = new window.google.maps.places.Autocomplete(destinationRef.current, {
+      types: ['(regions)'],
+      fields: ['name', 'formatted_address'],
+    });
+
+    const listener = autocomplete.addListener('place_changed', () => {
+      const place = autocomplete.getPlace();
+      if (place?.name) {
+        setFormData((prev) => ({ ...prev, destination: place.name }));
+      }
+    });
+
+    return () => {
+      if (listener && typeof listener.remove === 'function') {
+        listener.remove();
+      }
+    };
+  }, [googleReady]);
+
   // ---- Validation ----
   function validateStep(stepNumber) {
     switch (stepNumber) {
@@ -118,6 +184,44 @@ export default function MultistepForm({ isOpen, onClose }) {
           return false;
         }
         break;
+      case 3:
+        if (!formData.adults || formData.adults < 1) {
+          setError('Please enter number of adults (at least 1)');
+          return false;
+        }
+        if (formData.children == null || formData.children < 0) {
+          setError('Please enter a valid number of children');
+          return false;
+        }
+        break;
+      case 4: {
+        if (!formData.email || !formData.email.includes('@')) {
+          setError('Please enter a valid email address');
+          return false;
+        }
+        if (!formData.phone) {
+          setError('Please enter a valid phone number');
+          return false;
+        }
+        const phoneDigits = (formData.phone || '').replace(/\D/g, '');
+        if (phoneDigits.length !== 10) {
+          setError('Please enter a 10-digit phone number (e.g. 9876543210)');
+          return false;
+        }
+        break;
+      }
+      case 5:
+        if (formData.dateStatus === 'decided' && !formData.travelDate) {
+          setError('Please select your travel date or mark as not decided');
+          return false;
+        }
+        break;
+      case 6:
+        if (!formData.fromLocation || !formData.fromLocation.trim()) {
+          setError('Please enter your origin (From)');
+          return false;
+        }
+        break;
     }
     setError('');
     return true;
@@ -126,7 +230,7 @@ export default function MultistepForm({ isOpen, onClose }) {
   // ---- Navigation ----
   function handleNext() {
     if (!validateStep(step)) return;
-    if (step < 2) {
+    if (step < 6) {
       setDirection('next');
       setStep((s) => s + 1);
     }
@@ -142,6 +246,7 @@ export default function MultistepForm({ isOpen, onClose }) {
 
   // ---- Submit handler ----
   function handleSubmit() {
+    if (!validateStep(step)) return;
     console.log('Booking enquiry:', formData);
     alert("Thank you! We'll get back to you within 24 hours.");
     onClose();
@@ -158,225 +263,346 @@ export default function MultistepForm({ isOpen, onClose }) {
     setError('');
   }
 
-  // ---- Render step ----
-  function renderStep() {
-    if (step === 1) {
-      return (
-        <div className="step1-scroll">
-          {/* Destination */}
-          <div className="step1-field">
-            <label className="step1-label">Destination</label>
-            <input
-              type="text"
-              className="form-input"
-              placeholder="Search destinations (e.g. Bali, Dubai)..."
-              list="dest-list"
-              value={formData.destination}
-              onChange={(e) => updateField('destination', e.target.value)}
-            />
+  function StepOne({ formData, updateField, destinationRef, monthRef, monthOpen, setMonthOpen, dropdownCoords, setDropdownCoords, googleReady }) {
+    return (
+      <div className="step1-scroll">
+        <div className="step1-field">
+          <label className="step1-label">Destination</label>
+          <input
+            ref={destinationRef}
+            type="text"
+            className="form-input"
+            autoComplete="off"
+            placeholder="Search destinations (e.g. Bali, Dubai)..."
+            list={!googleReady ? 'dest-list' : undefined}
+            value={formData.destination}
+            onChange={(e) => updateField('destination', e.target.value)}
+          />
+          {!googleReady && (
             <datalist id="dest-list">
               {destinations.map((d) => (
                 <option key={d.name} value={d.name} />
               ))}
             </datalist>
-          </div>
+          )}
+        </div>
 
-          {/* Hotel Category */}
-          <div className="step1-field">
-            <label className="step1-label">Hotel Category</label>
-            <div className="chip-row">
-              {hotelCategories.map((h) => (
-                <button
-                  key={h.name}
-                  type="button"
-                  className={`chip ${formData.hotelCategory === h.name ? 'selected' : ''}`}
-                  onClick={() => updateField('hotelCategory', h.name)}
-                >
-                  {h.stars} Star{h.stars !== 1 ? 's' : ''}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Duration */}
-          <div className="step1-field">
-            <label className="step1-label">Duration</label>
-            <div className="chip-row">
-              {[3, 4, 7, 10].map((d) => (
-                <button
-                  key={d}
-                  type="button"
-                  className={`chip ${formData.days === d ? 'selected' : ''}`}
-                  onClick={() => updateField('days', d)}
-                >
-                  {d} {d === 1 ? 'day' : 'days'}
-                </button>
-              ))}
-              {formData.days > 10 ? (
-                <div className="days-custom-inline">
-                  <input
-                    type="number"
-                    className="days-custom-input"
-                    min="11"
-                    max="30"
-                    value={formData.days}
-                    onChange={(e) => updateField('days', Math.max(11, Math.min(30, parseInt(e.target.value, 10) || 11)))}
-                  />
-                  <span className="days-custom-label">days</span>
-                  <button
-                    type="button"
-                    className={`chip selected ${formData.days > 10 ? '' : ''}`}
-                    onClick={() => updateField('days', 7)}
-                  >
-                    ×
-                  </button>
-                </div>
-              ) : (
-                <button
-                  type="button"
-                  className="chip"
-                  onClick={() => updateField('days', 14)}
-                >
-                  10+ days
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* Travel Month */}
-          <div className="step1-field">
-            <label className="step1-label">Travel Month</label>
-            <div className="custom-select" ref={monthRef}>
+        <div className="step1-field">
+          <label className="step1-label">Hotel Category</label>
+          <div className="chip-row">
+            {hotelCategories.map((h) => (
               <button
+                key={h.name}
                 type="button"
-                className={`custom-select-trigger ${formData.month ? 'has-value' : ''}`}
-                onClick={() => {
-                  const willOpen = !monthOpen;
-                  if (willOpen) {
-                    const rect = monthRef.current?.getBoundingClientRect();
-                    if (rect) {
-                      const spaceBelow = window.innerHeight - rect.bottom - 10;
-                      const spaceAbove = rect.top - 10;
-                      // Open above if more space, otherwise below
-                      if (spaceAbove >= 220 || spaceAbove > spaceBelow) {
-                        setDropdownCoords({
-                          bottom: window.innerHeight - rect.top + 6,
-                          left: rect.left,
-                          width: rect.width,
-                        });
-                      } else {
-                        setDropdownCoords({
-                          top: rect.bottom + 6,
-                          left: rect.left,
-                          width: rect.width,
-                        });
-                      }
-                    }
-                  }
-                  setMonthOpen(willOpen);
-                  if (!willOpen) setDropdownCoords(null);
-                }}
+                className={`chip ${formData.hotelCategory === h.name ? 'selected' : ''}`}
+                onClick={() => updateField('hotelCategory', h.name)}
               >
-                <span>{formData.month || 'Select month...'}</span>
-                <svg className={`custom-select-arrow ${monthOpen ? 'open' : ''}`} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
+                {h.stars} Star{h.stars !== 1 ? 's' : ''}
               </button>
-              {monthOpen && dropdownCoords && createPortal(
-                <div
-                  className="custom-select-dropdown"
-                  style={{
-                    position: 'fixed',
-                    top: dropdownCoords.top ?? 'auto',
-                    bottom: dropdownCoords.bottom ?? 'auto',
-                    left: dropdownCoords.left,
-                    width: dropdownCoords.width,
-                    zIndex: 99999,
-                  }}
-                >
-                  {months.map((m) => (
-                    <button
-                      key={m.name}
-                      type="button"
-                      className={`custom-select-option ${formData.month === m.name ? 'selected' : ''}`}
-                      onMouseDown={(e) => {
-                        e.preventDefault(); // prevent focus loss; fires before document mousedown closes portal
-                        updateField('month', m.name);
-                        setMonthOpen(false);
-                        setDropdownCoords(null);
-                      }}
-                    >
-                      {m.name}
-                    </button>
-                  ))}
-                </div>,
-                document.body
-              )}
-            </div>
-          </div>
-
-          {/* Flights */}
-          <div className="step1-field">
-            <label className="step1-label">Need Flights?</label>
-            <div className="flight-toggle-compact">
-              <button type="button" className={`chip ${formData.needFlight === true ? 'selected' : ''}`} onClick={() => updateField('needFlight', true)}>Yes ✈️</button>
-              <button type="button" className={`chip ${formData.needFlight === false ? 'selected' : ''}`} onClick={() => updateField('needFlight', false)}>No</button>
-            </div>
+            ))}
           </div>
         </div>
-      );
-    }
 
-    // Step 2
+        <div className="step1-field">
+          <label className="step1-label">Duration</label>
+          <div className="chip-row">
+            {[3, 4, 7, 10].map((d) => (
+              <button
+                key={d}
+                type="button"
+                className={`chip ${formData.days === d ? 'selected' : ''}`}
+                onClick={() => updateField('days', d)}
+              >
+                {d} {d === 1 ? 'day' : 'days'}
+              </button>
+            ))}
+            {formData.days > 10 ? (
+              <div className="days-custom-inline">
+                <input
+                  type="number"
+                  className="days-custom-input"
+                  min="11"
+                  max="30"
+                  value={formData.days}
+                  onChange={(e) => updateField('days', Math.max(11, Math.min(30, parseInt(e.target.value, 10) || 11)))}
+                />
+                <span className="days-custom-label">days</span>
+                <button
+                  type="button"
+                  className="chip selected"
+                  onClick={() => updateField('days', 7)}
+                >
+                  ×
+                </button>
+              </div>
+            ) : (
+              <button type="button" className="chip" onClick={() => updateField('days', 14)}>
+                10+ days
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div className="step1-field">
+          <label className="step1-label">Travel Month</label>
+          <div className="custom-select" ref={monthRef}>
+            <button
+              type="button"
+              className={`custom-select-trigger ${formData.month ? 'has-value' : ''}`}
+              onClick={() => {
+                const willOpen = !monthOpen;
+                if (willOpen) {
+                  const rect = monthRef.current?.getBoundingClientRect();
+                  if (rect) {
+                    const spaceBelow = window.innerHeight - rect.bottom - 10;
+                    const spaceAbove = rect.top - 10;
+                    if (spaceAbove >= 220 || spaceAbove > spaceBelow) {
+                      setDropdownCoords({
+                        bottom: window.innerHeight - rect.top + 6,
+                        left: rect.left,
+                        width: rect.width,
+                      });
+                    } else {
+                      setDropdownCoords({
+                        top: rect.bottom + 6,
+                        left: rect.left,
+                        width: rect.width,
+                      });
+                    }
+                  }
+                }
+                setMonthOpen(willOpen);
+                if (!willOpen) setDropdownCoords(null);
+              }}
+            >
+              <span>{formData.month || 'Select month...'}</span>
+              <svg className={`custom-select-arrow ${monthOpen ? 'open' : ''}`} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            {monthOpen && dropdownCoords && createPortal(
+              <div
+                className="custom-select-dropdown"
+                style={{
+                  position: 'fixed',
+                  top: dropdownCoords.top ?? 'auto',
+                  bottom: dropdownCoords.bottom ?? 'auto',
+                  left: dropdownCoords.left,
+                  width: dropdownCoords.width,
+                  zIndex: 99999,
+                }}
+              >
+                {months.map((m) => (
+                  <button
+                    key={m.name}
+                    type="button"
+                    className={`custom-select-option ${formData.month === m.name ? 'selected' : ''}`}
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      updateField('month', m.name);
+                      setMonthOpen(false);
+                      setDropdownCoords(null);
+                    }}
+                  >
+                    {m.name}
+                  </button>
+                ))}
+              </div>,
+              document.body
+            )}
+          </div>
+        </div>
+
+        <div className="step1-field">
+          <label className="step1-label">Need Flights?</label>
+          <div className="flight-toggle-compact">
+            <button type="button" className={`chip ${formData.needFlight === true ? 'selected' : ''}`} onClick={() => updateField('needFlight', true)}>
+              Yes ✈️
+            </button>
+            <button type="button" className={`chip ${formData.needFlight === false ? 'selected' : ''}`} onClick={() => updateField('needFlight', false)}>
+              No
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  function StepTwo({ formData, updateField }) {
     return (
       <div>
-        {/* Trip type grid */}
         <div className="chip-row">
           {tripTypes.map((t) => (
             <button
               key={t.name}
               type="button"
               className={`chip ${formData.tripType === t.name ? 'selected' : ''}`}
-              onClick={() => { updateField('tripType', t.name); }}
+              onClick={() => updateField('tripType', t.name)}
               title={t.desc}
             >
               {t.emoji} {t.name}
             </button>
           ))}
         </div>
-
-        {/* Summary */}
-        <div className="summary-section" style={{ marginTop: '20px' }}>
-          <div className="summary-card">
-            <span className="summary-label">Destination</span>
-            <span className="summary-value">{formData.destination || '—'}</span>
-          </div>
-          <div className="summary-card">
-            <span className="summary-label">Hotel</span>
-            <span className="summary-value">{formData.hotelCategory || '—'}</span>
-          </div>
-          <div className="summary-card">
-            <span className="summary-label">Duration</span>
-            <span className="summary-value">
-              {formData.days} {formData.days === 1 ? 'day' : 'days'}
-            </span>
-          </div>
-          <div className="summary-card">
-            <span className="summary-label">Month</span>
-            <span className="summary-value">{formData.month || '—'}</span>
-          </div>
-          <div className="summary-card">
-            <span className="summary-label">Flights</span>
-            <span className="summary-value">{formData.needFlight ? 'Yes ✈️' : 'No'}</span>
-          </div>
-        </div>
-
-        {/* Submit */}
-        <button type="button" className="submit-btn" onClick={handleSubmit}>
-          Submit Enquiry
-        </button>
       </div>
     );
+  }
+
+  function StepThree({ formData, updateField }) {
+    return (
+      <div className="step3-fields">
+        <div className="step1-field">
+          <label className="step1-label">Adults</label>
+          <input
+            type="number"
+            className="form-input"
+            min="1"
+            value={formData.adults}
+            onChange={(e) => updateField('adults', Math.max(1, parseInt(e.target.value, 10) || 1))}
+          />
+        </div>
+
+        <div className="step1-field">
+          <label className="step1-label">Children</label>
+          <input
+            type="number"
+            className="form-input"
+            min="0"
+            value={formData.children}
+            onChange={(e) => updateField('children', Math.max(0, parseInt(e.target.value, 10) || 0))}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  function StepFour({ formData, updateField }) {
+    return (
+      <div className="step4-fields">
+        <div className="step1-field">
+          <label className="step1-label">Email</label>
+          <input
+            type="email"
+            className="form-input"
+            value={formData.email}
+            onChange={(e) => updateField('email', e.target.value)}
+            placeholder="you@example.com"
+          />
+        </div>
+
+        <div className="step1-field">
+          <label className="step1-label">Phone number</label>
+          <input
+            type="tel"
+            className="form-input"
+            value={formData.phone}
+            onChange={(e) => updateField('phone', e.target.value)}
+            placeholder="e.g. 9876543210 (no +91)"
+          />
+        </div>
+      </div>
+    );
+  }
+
+  function StepFive({ formData, updateField, today }) {
+    return (
+      <div className="step5-fields">
+        <div className="step1-field">
+          <label className="step1-label">Travel date</label>
+          <div className="chip-row">
+            <label className="radio-inline">
+              <input
+                type="radio"
+                name="dateStatus"
+                value="not decided"
+                checked={formData.dateStatus === 'not decided'}
+                onChange={() => updateField('dateStatus', 'not decided')}
+              />
+              Not decided
+            </label>
+            <label className="radio-inline">
+              <input
+                type="radio"
+                name="dateStatus"
+                value="decided"
+                checked={formData.dateStatus === 'decided'}
+                onChange={() => updateField('dateStatus', 'decided')}
+              />
+              Decided
+            </label>
+          </div>
+          {formData.dateStatus === 'decided' && (
+            <input
+              type="date"
+              className="form-input"
+              min={today}
+              value={formData.travelDate}
+              onChange={(e) => updateField('travelDate', e.target.value)}
+            />
+          )}
+        </div>
+
+        <div className="step1-field">
+          <label className="step1-label">
+            <input
+              type="checkbox"
+              checked={formData.bookedTickets}
+              onChange={(e) => updateField('bookedTickets', e.target.checked)}
+              style={{ marginRight: 8 }}
+            />
+            I have booked my travel tickets
+          </label>
+        </div>
+      </div>
+    );
+  }
+
+  function StepSix({ formData, updateField }) {
+    return (
+      <div className="step6-fields">
+        <div className="step1-field">
+          <label className="step1-label">From (origin)</label>
+          <input
+            type="text"
+            className="form-input"
+            value={formData.fromLocation}
+            onChange={(e) => updateField('fromLocation', e.target.value)}
+            placeholder="City or airport (e.g. New York)"
+          />
+        </div>
+      </div>
+    );
+  }
+
+  function renderStep() {
+    switch (step) {
+      case 1:
+        return (
+          <StepOne
+            formData={formData}
+            updateField={updateField}
+            destinationRef={destinationRef}
+            monthRef={monthRef}
+            monthOpen={monthOpen}
+            setMonthOpen={setMonthOpen}
+            dropdownCoords={dropdownCoords}
+            setDropdownCoords={setDropdownCoords}
+            googleReady={googleReady}
+          />
+        );
+      case 2:
+        return <StepTwo formData={formData} updateField={updateField} />;
+      case 3:
+        return <StepThree formData={formData} updateField={updateField} />;
+      case 4:
+        return <StepFour formData={formData} updateField={updateField} />;
+      case 5:
+        return <StepFive formData={formData} updateField={updateField} today={today} />;
+      case 6:
+        return <StepSix formData={formData} updateField={updateField} />;
+      default:
+        return null;
+    }
   }
 
   if (!isOpen) return null;
@@ -396,13 +622,13 @@ export default function MultistepForm({ isOpen, onClose }) {
 
         {/* Progress bar */}
         <div className="form-progress">
-          {[1, 2].map((s) => (
+          {[1, 2, 3, 4, 5, 6].map((s) => (
             <div key={s} className={`form-progress-segment ${s <= step ? 'active' : ''}`} />
           ))}
         </div>
 
         {/* Step info */}
-        <div className="form-step-info">Step {step} of 2</div>
+        <div className="form-step-info">Step {step} of 6</div>
         <div className="form-step-title">{stepTitles[step - 1]}</div>
 
         {/* Animated step content */}
@@ -428,12 +654,18 @@ export default function MultistepForm({ isOpen, onClose }) {
             </button>
           )}
           <div className="form-footer-spacer" />
-          {step < 2 ? (
+          {step < 6 ? (
             <button type="button" className="form-btn-next" onClick={handleNext}>
               Next &rarr;
             </button>
           ) : (
-            <button type="button" className="form-btn-submit" onClick={handleSubmit}>
+            <button
+              type="button"
+              className="form-btn-submit"
+              onClick={handleSubmit}
+              disabled={!formData.fromLocation || !formData.fromLocation.trim()}
+              aria-disabled={!formData.fromLocation || !formData.fromLocation.trim()}
+            >
               Submit Enquiry
             </button>
           )}

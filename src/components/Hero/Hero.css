@@ -303,8 +303,8 @@
 }
 
 /* Hide Default Arrows if not using them */
-.swiper-button-prev,
-.swiper-button-next {
+.hero .swiper-button-prev,
+.hero .swiper-button-next {
   display: none;
 }
 
@@ -408,7 +408,7 @@
 @media (max-width: 480px) {
   .hero,
   .hero-slide {
-    height: 80vh;
+    height: 95vh;
     min-height: auto;
   }
 

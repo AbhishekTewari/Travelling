@@ -1,0 +1,511 @@
+- generic [ref=e3]:
+  - banner:
+    - generic [ref=e4]:
+      - link "Travel Log Book — Home" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "Travel Log Book logo" [ref=e6]
+        - generic [ref=e7]: Travel Log Book
+      - navigation "Main navigation" [ref=e8]:
+        - list [ref=e9]:
+          - listitem [ref=e10]:
+            - link "Honeymoon" [ref=e11] [cursor=pointer]:
+              - /url: /honeymoon
+          - listitem [ref=e12]:
+            - link "Destinations" [ref=e13] [cursor=pointer]:
+              - /url: /destinations
+          - listitem [ref=e14]:
+            - link "Categories" [ref=e15] [cursor=pointer]:
+              - /url: /categories
+          - listitem [ref=e16]:
+            - link "Seasonal Guides" [ref=e17] [cursor=pointer]:
+              - /url: /season
+          - listitem [ref=e18]:
+            - link "Travelogues" [ref=e19] [cursor=pointer]:
+              - /url: /travelogues
+      - generic [ref=e20]:
+        - link "Call Us" [ref=e21] [cursor=pointer]:
+          - /url: tel:+911234567890
+          - img [ref=e22]
+          - text: Call Us
+        - button "Book Now" [ref=e24] [cursor=pointer]
+  - generic [ref=e27]:
+    - generic [ref=e29]:
+      - img "Beautiful Landscapes" [ref=e30]
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]: Explore The World
+          - heading "Discover Amazing Places Around The Globe" [level=1] [ref=e35]
+          - paragraph [ref=e36]: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+          - generic [ref=e37]:
+            - button "Plan Your Trip" [ref=e38] [cursor=pointer]
+            - button "Explore Destinations" [ref=e39] [cursor=pointer]
+        - generic [ref=e40]:
+          - heading "Get Free Consultation" [level=2] [ref=e41]
+          - generic [ref=e42]:
+            - textbox "Full Name" [ref=e43]
+            - textbox "Email Address" [ref=e44]
+            - textbox "Phone Number" [ref=e45]
+            - combobox [ref=e46]:
+              - option "Select Destination" [selected]
+              - option "Dubai"
+              - option "Bali"
+              - option "Thailand"
+              - option "Europe"
+            - button "Request Quote" [ref=e47] [cursor=pointer]
+    - generic:
+      - generic:
+        - img "Discover New Destinations"
+        - generic:
+          - generic:
+            - generic: Explore The World
+            - heading "Discover Amazing Places Around The Globe" [level=1]
+            - paragraph: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+            - generic:
+              - button "Plan Your Trip"
+              - button "Explore Destinations"
+          - generic:
+            - heading "Get Free Consultation" [level=2]
+            - generic:
+              - textbox "Full Name"
+              - textbox "Email Address"
+              - textbox "Phone Number"
+              - combobox:
+                - option "Select Destination" [selected]
+                - option "Dubai"
+                - option "Bali"
+                - option "Thailand"
+                - option "Europe"
+              - button "Request Quote"
+    - generic:
+      - generic:
+        - img "Travel Without Limits"
+        - generic:
+          - generic:
+            - generic: Explore The World
+            - heading "Discover Amazing Places Around The Globe" [level=1]
+            - paragraph: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+            - generic:
+              - button "Plan Your Trip"
+              - button "Explore Destinations"
+          - generic:
+            - heading "Get Free Consultation" [level=2]
+            - generic:
+              - textbox "Full Name"
+              - textbox "Email Address"
+              - textbox "Phone Number"
+              - combobox:
+                - option "Select Destination" [selected]
+                - option "Dubai"
+                - option "Bali"
+                - option "Thailand"
+                - option "Europe"
+              - button "Request Quote"
+    - generic:
+      - generic:
+        - img "Explore Nature"
+        - generic:
+          - generic:
+            - generic: Explore The World
+            - heading "Discover Amazing Places Around The Globe" [level=1]
+            - paragraph: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+            - generic:
+              - button "Plan Your Trip"
+              - button "Explore Destinations"
+          - generic:
+            - heading "Get Free Consultation" [level=2]
+            - generic:
+              - textbox "Full Name"
+              - textbox "Email Address"
+              - textbox "Phone Number"
+              - combobox:
+                - option "Select Destination" [selected]
+                - option "Dubai"
+                - option "Bali"
+                - option "Thailand"
+                - option "Europe"
+              - button "Request Quote"
+    - generic:
+      - generic:
+        - img "Mountain Adventures"
+        - generic:
+          - generic:
+            - generic: Explore The World
+            - heading "Discover Amazing Places Around The Globe" [level=1]
+            - paragraph: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+            - generic:
+              - button "Plan Your Trip"
+              - button "Explore Destinations"
+          - generic:
+            - heading "Get Free Consultation" [level=2]
+            - generic:
+              - textbox "Full Name"
+              - textbox "Email Address"
+              - textbox "Phone Number"
+              - combobox:
+                - option "Select Destination" [selected]
+                - option "Dubai"
+                - option "Bali"
+                - option "Thailand"
+                - option "Europe"
+              - button "Request Quote"
+    - generic:
+      - generic:
+        - img "Ocean Escapes"
+        - generic:
+          - generic:
+            - generic: Explore The World
+            - heading "Discover Amazing Places Around The Globe" [level=1]
+            - paragraph: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+            - generic:
+              - button "Plan Your Trip"
+              - button "Explore Destinations"
+          - generic:
+            - heading "Get Free Consultation" [level=2]
+            - generic:
+              - textbox "Full Name"
+              - textbox "Email Address"
+              - textbox "Phone Number"
+              - combobox:
+                - option "Select Destination" [selected]
+                - option "Dubai"
+                - option "Bali"
+                - option "Thailand"
+                - option "Europe"
+              - button "Request Quote"
+    - generic:
+      - generic:
+        - img "Journey Beyond"
+        - generic:
+          - generic:
+            - generic: Explore The World
+            - heading "Discover Amazing Places Around The Globe" [level=1]
+            - paragraph: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+            - generic:
+              - button "Plan Your Trip"
+              - button "Explore Destinations"
+          - generic:
+            - heading "Get Free Consultation" [level=2]
+            - generic:
+              - textbox "Full Name"
+              - textbox "Email Address"
+              - textbox "Phone Number"
+              - combobox:
+                - option "Select Destination" [selected]
+                - option "Dubai"
+                - option "Bali"
+                - option "Thailand"
+                - option "Europe"
+              - button "Request Quote"
+    - generic:
+      - generic:
+        - img "Wilderness Awaits"
+        - generic:
+          - generic:
+            - generic: Explore The World
+            - heading "Discover Amazing Places Around The Globe" [level=1]
+            - paragraph: Experience unforgettable adventures, breathtaking landscapes, and personalized travel packages designed for you.
+            - generic:
+              - button "Plan Your Trip"
+              - button "Explore Destinations"
+          - generic:
+            - heading "Get Free Consultation" [level=2]
+            - generic:
+              - textbox "Full Name"
+              - textbox "Email Address"
+              - textbox "Phone Number"
+              - combobox:
+                - option "Select Destination" [selected]
+                - option "Dubai"
+                - option "Bali"
+                - option "Thailand"
+                - option "Europe"
+              - button "Request Quote"
+  - generic [ref=e58]:
+    - generic [ref=e59]:
+      - generic [ref=e60]: Browse by
+      - heading "Trip Categories" [level=2] [ref=e61]
+    - generic [ref=e62]:
+      - link "🏔️ Adventure" [ref=e63] [cursor=pointer]:
+        - /url: /categories/adventure
+        - generic [ref=e64]: 🏔️
+        - generic [ref=e65]: Adventure
+      - link "💑 Honeymoon" [ref=e66] [cursor=pointer]:
+        - /url: /categories/honeymoon
+        - generic [ref=e67]: 💑
+        - generic [ref=e68]: Honeymoon
+      - link "🏖️ Beach" [ref=e69] [cursor=pointer]:
+        - /url: /categories/beach
+        - generic [ref=e70]: 🏖️
+        - generic [ref=e71]: Beach
+      - link "🏛️ Cultural" [ref=e72] [cursor=pointer]:
+        - /url: /categories/cultural
+        - generic [ref=e73]: 🏛️
+        - generic [ref=e74]: Cultural
+      - link "👨‍👩‍👧‍👦 Family" [ref=e75] [cursor=pointer]:
+        - /url: /categories/family
+        - generic [ref=e76]: 👨‍👩‍👧‍👦
+        - generic [ref=e77]: Family
+      - link "💎 Luxury" [ref=e78] [cursor=pointer]:
+        - /url: /categories/luxury
+        - generic [ref=e79]: 💎
+        - generic [ref=e80]: Luxury
+  - generic [ref=e82]:
+    - generic [ref=e83]:
+      - generic [ref=e84]: Top Picks
+      - heading "Featured Packages" [level=2] [ref=e85]
+      - paragraph [ref=e86]: Hand-picked trips our travelers love most.
+    - generic [ref=e87]:
+      - article [ref=e88]:
+        - generic [ref=e89]:
+          - img "Swiss Alps Adventure" [ref=e90]
+          - generic [ref=e92]: 🏔️
+          - generic [ref=e93]: ⭐ Best Seller
+        - generic [ref=e94]:
+          - generic [ref=e95]: Interlaken, Switzerland
+          - heading "Swiss Alps Adventure" [level=3] [ref=e96]
+          - generic [ref=e97]:
+            - img [ref=e98]
+            - text: 7 Days / 6 Nights
+          - list [ref=e101]:
+            - listitem [ref=e102]: ✈️ Flights Included
+            - listitem [ref=e103]: 🏨 5★ Hotels
+            - listitem [ref=e104]: 🚡 Jungfrau Ride
+        - generic [ref=e105]:
+          - generic [ref=e106]:
+            - generic [ref=e107]: Starting from
+            - generic [ref=e108]: ₹1,29,999
+          - link "View Package" [ref=e109] [cursor=pointer]:
+            - /url: /packages/swiss-alps-adventure
+            - text: View Package
+            - img [ref=e110]
+      - article [ref=e112]:
+        - generic [ref=e113]:
+          - img "Bali Honeymoon Escape" [ref=e114]
+          - generic [ref=e116]: 🏝️
+          - generic [ref=e117]: 💑 Honeymoon
+        - generic [ref=e118]:
+          - generic [ref=e119]: Bali, Indonesia
+          - heading "Bali Honeymoon Escape" [level=3] [ref=e120]
+          - generic [ref=e121]:
+            - img [ref=e122]
+            - text: 5 Days / 4 Nights
+          - list [ref=e125]:
+            - listitem [ref=e126]: 🏡 Private Villa
+            - listitem [ref=e127]: 🌊 Beach Club
+            - listitem [ref=e128]: 💆 Couple Spa
+        - generic [ref=e129]:
+          - generic [ref=e130]:
+            - generic [ref=e131]: Starting from
+            - generic [ref=e132]: ₹79,999
+          - link "View Package" [ref=e133] [cursor=pointer]:
+            - /url: /packages/bali-honeymoon-escape
+            - text: View Package
+            - img [ref=e134]
+      - article [ref=e136]:
+        - generic [ref=e137]:
+          - img "Thailand Explorer" [ref=e138]
+          - generic [ref=e140]: 🏯
+          - generic [ref=e141]: 💰 Budget Pick
+        - generic [ref=e142]:
+          - generic [ref=e143]: Bangkok & Phuket
+          - heading "Thailand Explorer" [level=3] [ref=e144]
+          - generic [ref=e145]:
+            - img [ref=e146]
+            - text: 6 Days / 5 Nights
+          - list [ref=e149]:
+            - listitem [ref=e150]: 🏯 Temple Tour
+            - listitem [ref=e151]: 🍜 Food Trail
+            - listitem [ref=e152]: 🏖️ Island Hop
+        - generic [ref=e153]:
+          - generic [ref=e154]:
+            - generic [ref=e155]: Starting from
+            - generic [ref=e156]: ₹49,999
+          - link "View Package" [ref=e157] [cursor=pointer]:
+            - /url: /packages/thailand-explorer
+            - text: View Package
+            - img [ref=e158]
+    - link "View All Packages" [ref=e161] [cursor=pointer]:
+      - /url: /packages
+      - text: View All Packages
+      - img [ref=e162]
+  - generic [ref=e164]:
+    - img [ref=e165]
+    - generic [ref=e167]:
+      - figure [ref=e168]:
+        - img "Beach resort" [ref=e169]
+      - figure [ref=e170]:
+        - img "Mountain trek" [ref=e171]
+      - figure [ref=e172]:
+        - img "City at night" [ref=e173]
+      - figure [ref=e174]:
+        - img "Restaurant interior" [ref=e175]
+    - generic [ref=e176]:
+      - generic [ref=e177]:
+        - heading "luxury Beauty Hotels" [level=2] [ref=e178]:
+          - generic [ref=e179]: luxury
+          - generic [ref=e180]: Beauty Hotels
+        - paragraph [ref=e181]: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      - list [ref=e182]:
+        - listitem [ref=e183]:
+          - img [ref=e185]
+          - generic [ref=e188]:
+            - heading "Comfortable Stays" [level=3] [ref=e189]
+            - paragraph [ref=e190]: Curabitur fermentum, arcu eleifend massa convallis, id bibendum mi laoreet, in vel vulputate lectus.
+        - listitem [ref=e191]:
+          - img [ref=e193]
+          - generic [ref=e197]:
+            - heading "Hand-picked Hotels" [level=3] [ref=e198]
+            - paragraph [ref=e199]: Curabitur fermentum, arcu eleifend massa convallis, id bibendum mi laoreet, in vel vulputate lectus.
+        - listitem [ref=e200]:
+          - img [ref=e202]
+          - generic [ref=e205]:
+            - heading "24/7 Concierge" [level=3] [ref=e206]
+            - paragraph [ref=e207]: Curabitur fermentum, arcu eleifend massa convallis, id bibendum mi laoreet, in vel vulputate lectus.
+    - img [ref=e208]
+  - generic [ref=e211]:
+    - generic [ref=e212]:
+      - generic [ref=e213]: Hear from Our Travelers
+      - heading "What Our Guests Say" [level=2] [ref=e214]
+      - paragraph [ref=e215]: Real reviews from real travelers who booked with us.
+    - generic [ref=e216]:
+      - article [ref=e217]:
+        - generic "5 out of 5 stars" [ref=e218]:
+          - img [ref=e219]
+          - img [ref=e221]
+          - img [ref=e223]
+          - img [ref=e225]
+          - img [ref=e227]
+        - paragraph [ref=e229]: “Our Swiss Alps trip was absolutely magical! Everything was perfectly organized — from the flights to the hotels. The Jungfrau experience was unforgettable. Already planning our next trip!”
+        - generic [ref=e230]:
+          - generic [ref=e231]: PS
+          - generic [ref=e232]:
+            - generic [ref=e233]: Priya Sharma
+            - generic [ref=e234]: Mumbai, India · Swiss Alps Adventure
+      - article [ref=e235]:
+        - generic "5 out of 5 stars" [ref=e236]:
+          - img [ref=e237]
+          - img [ref=e239]
+          - img [ref=e241]
+          - img [ref=e243]
+          - img [ref=e245]
+        - paragraph [ref=e247]: “The Bali honeymoon package exceeded every expectation. Private villa, sunset beach club, couple spa — it was pure romance. Every detail was taken care of. Thank you for making our honeymoon special!”
+        - generic [ref=e248]:
+          - generic [ref=e249]: R&A
+          - generic [ref=e250]:
+            - generic [ref=e251]: Rahul & Ananya
+            - generic [ref=e252]: Delhi, India · Bali Honeymoon Escape
+      - article [ref=e253]:
+        - generic "5 out of 5 stars" [ref=e254]:
+          - img [ref=e255]
+          - img [ref=e257]
+          - img [ref=e259]
+          - img [ref=e261]
+          - img [ref=e263]
+        - paragraph [ref=e265]: “Best travel agency I have ever worked with. The Thailand trip was budget-friendly but felt luxurious. The food trail and temple tours were highlights. Highly recommended for first-time travelers!”
+        - generic [ref=e266]:
+          - generic [ref=e267]: AP
+          - generic [ref=e268]:
+            - generic [ref=e269]: Amit Patel
+            - generic [ref=e270]: Ahmedabad, India · Thailand Explorer
+      - article [ref=e271]:
+        - generic "4 out of 5 stars" [ref=e272]:
+          - img [ref=e273]
+          - img [ref=e275]
+          - img [ref=e277]
+          - img [ref=e279]
+          - img [ref=e281]
+        - paragraph [ref=e283]: “Booked a family trip to Goa through Travel Log Book. The kids loved the beach activities and the resort was fantastic. Only wish we had one more day! Will definitely book again.”
+        - generic [ref=e284]:
+          - generic [ref=e285]: SK
+          - generic [ref=e286]:
+            - generic [ref=e287]: Sneha Kapoor
+            - generic [ref=e288]: Bangalore, India · Goa Family Getaway
+    - generic [ref=e289]:
+      - generic [ref=e290]:
+        - img [ref=e291]
+        - img [ref=e293]
+        - img [ref=e295]
+        - img [ref=e297]
+        - img [ref=e299]
+      - generic [ref=e301]:
+        - strong [ref=e302]: 4.8 / 5
+        - text: — Based on 250+ verified reviews
+  - contentinfo [ref=e303]:
+    - generic [ref=e304]:
+      - generic [ref=e305]:
+        - generic [ref=e306]:
+          - link "Travel Log Book logo Travel Log Book" [ref=e307] [cursor=pointer]:
+            - /url: /
+            - img "Travel Log Book logo" [ref=e308]
+            - generic [ref=e309]: Travel Log Book
+          - paragraph [ref=e310]: Curated travel packages, honeymoon tours, and destination guides. We turn your travel dreams into unforgettable experiences.
+          - generic [ref=e311]:
+            - link "Instagram" [ref=e312] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e313]
+            - link "Facebook" [ref=e316] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e317]
+            - link "YouTube" [ref=e319] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e320]
+            - link "Twitter" [ref=e323] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e324]
+        - generic [ref=e326]:
+          - heading "Quick Links" [level=4] [ref=e327]
+          - list [ref=e328]:
+            - listitem [ref=e329]:
+              - link "Honeymoon Packages" [ref=e330] [cursor=pointer]:
+                - /url: /honeymoon
+            - listitem [ref=e331]:
+              - link "Popular Destinations" [ref=e332] [cursor=pointer]:
+                - /url: /destinations
+            - listitem [ref=e333]:
+              - link "Travel Categories" [ref=e334] [cursor=pointer]:
+                - /url: /categories
+            - listitem [ref=e335]:
+              - link "Seasonal Guides" [ref=e336] [cursor=pointer]:
+                - /url: /season
+            - listitem [ref=e337]:
+              - link "Travel Blog" [ref=e338] [cursor=pointer]:
+                - /url: /travelogues
+        - generic [ref=e339]:
+          - heading "Support" [level=4] [ref=e340]
+          - list [ref=e341]:
+            - listitem [ref=e342]:
+              - link "FAQ & Help" [ref=e343] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e344]:
+              - link "Cancellation Policy" [ref=e345] [cursor=pointer]:
+                - /url: /cancellation
+            - listitem [ref=e346]:
+              - link "Terms & Conditions" [ref=e347] [cursor=pointer]:
+                - /url: /terms
+            - listitem [ref=e348]:
+              - link "Privacy Policy" [ref=e349] [cursor=pointer]:
+                - /url: /privacy
+            - listitem [ref=e350]:
+              - link "Contact Us" [ref=e351] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e352]:
+          - heading "Get in Touch" [level=4] [ref=e353]
+          - generic [ref=e354]:
+            - generic [ref=e355]:
+              - img [ref=e356]
+              - generic [ref=e358]: +91 98765 43210
+            - generic [ref=e359]:
+              - img [ref=e360]
+              - generic [ref=e363]: hello@travellogbook.com
+            - generic [ref=e364]:
+              - img [ref=e365]
+              - generic [ref=e368]: Mumbai, India
+          - generic [ref=e369]:
+            - heading "Get Travel Deals" [level=5] [ref=e370]
+            - generic [ref=e371]:
+              - textbox "Your email" [ref=e372]
+              - button "Subscribe" [ref=e373] [cursor=pointer]:
+                - img [ref=e374]
+      - generic [ref=e376]:
+        - paragraph [ref=e377]: © 2026 Travel Log Book. All rights reserved.
+        - paragraph [ref=e378]: Designed with ❤️ for travelers
