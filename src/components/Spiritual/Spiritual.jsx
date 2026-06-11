@@ -17,7 +17,7 @@ import "./Spiritual.css";
 const REGIONS = [
   {
     id: "north",
-    label: "North India",
+    label: "North",
     sky: ["#DCE7F2", "#F8D9B4"],
     temples: [
       { name: "Kedarnath", deity: "Shiva", location: "Uttarakhand", image: null, accent: "#F2912F",
@@ -34,7 +34,7 @@ const REGIONS = [
   },
   {
     id: "west",
-    label: "West India",
+    label: "West",
     sky: ["#E9DCEF", "#F9CBB0"],
     temples: [
       { name: "Somnath", deity: "Shiva", location: "Gujarat coast", image: null, accent: "#E8703C",
@@ -51,7 +51,7 @@ const REGIONS = [
   },
   {
     id: "south",
-    label: "South India",
+    label: "South",
     sky: ["#EFE3D2", "#F6CFA6"],
     temples: [
       { name: "Tirumala Tirupati", deity: "Venkateswara", location: "Andhra Pradesh", image: null, accent: "#C9962E",
@@ -68,7 +68,7 @@ const REGIONS = [
   },
   {
     id: "east",
-    label: "East India",
+    label: "East",
     sky: ["#DEE6F0", "#F4D3C0"],
     temples: [
       { name: "Jagannath Puri", deity: "Jagannath", location: "Odisha", image: null, accent: "#E8703C",
@@ -314,7 +314,7 @@ export default function SpiritualTemples() {
                 if (swiperRef.current) swiperRef.current.slideToLoop(0, 400);
               }}
             >
-              <span className="st-tab-dot" />
+              {/* <span className="st-tab-dot" /> */}
               {r.label}
             </button>
           ))}
