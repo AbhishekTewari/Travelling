@@ -4,7 +4,7 @@
 
 .testimonials {
   position: relative;
-  padding: 5rem 2rem;
+  padding: 15px 2rem;
   background: #f9f9f9;
   overflow: hidden;
   isolation: isolate;
@@ -58,7 +58,7 @@
 /* ── Swiper Container ───────────────────────── */
 .testimonials__swiper {
   width: 100%;
-  padding: 0.5rem 0 2.5rem;
+  padding: 0.5rem 0 10px;
 }
 
 .testimonials__swiper .swiper-slide {
@@ -203,7 +203,7 @@
 
 @media (max-width: 768px) {
   .testimonials {
-    padding: 3.5rem 1.25rem;
+    padding: 1.5rem 1.25rem;
   }
 
   .testimonials__card {

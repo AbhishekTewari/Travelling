@@ -25,7 +25,7 @@
   display: block;
 }
 /* .hotels__wave path { fill: #f9f9f9; } */
-.hotels__wave--top    { top: 0; fill:#f9e0c2;}
+.hotels__wave--top    { top: 0; fill:#ffffff;}
 .hotels__wave--bottom { bottom: 0;  fill:#f9f9f9; }
 
 /* ----- tilted photo collage ----- */

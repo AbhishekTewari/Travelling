@@ -432,6 +432,7 @@
   }
 
   .hero-buttons {
+    bottom: 88px;
     gap: 10px;
   }
 
@@ -442,6 +443,6 @@
   }
 
   .swiper-pagination {
-    bottom: 16px !important;
+    bottom: 46px !important;
   }
 }
